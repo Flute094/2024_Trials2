@@ -11,7 +11,7 @@ import frc.robot.Constants.OperatorConstants;
 
 
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.ExampleSubsystem;
+//import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pnuematics;
 
@@ -19,7 +19,7 @@ import frc.robot.subsystems.Pnuematics;
 
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj2.command.Command;
+
 
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -35,7 +35,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drive m_drive = new Drive();
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Intake m_Intake = new Intake();
   private final Pnuematics m_pnuematics = new Pnuematics();
 
@@ -75,10 +75,11 @@ GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVeriable).ge
     m_drive.setDefaultCommand(
         m_drive.arcadeDriveCommand(
             () -> m_driverController.getLeftY()*speedVeriable, () -> -m_driverController.getRightX()*speedVeriable));
-   //m_driverController.leftBumper().whileTrue(m_Intake.Suck_In());
-    //m_driverController.rightBumper().whileTrue(m_Intake.Launch());
-    //m_driverController.a().onTrue(m_pnuematics.armUp());
-    //m_driverController.x().onTrue(m_pnuematics.armDown());
+   m_driverController.leftBumper().whileTrue(m_Intake.Suck_In());
+    m_driverController.rightBumper().whileTrue(m_Intake.Launch());
+    m_driverController.a().onTrue(m_pnuematics.armUp());
+    m_driverController.x().onTrue(m_pnuematics.armDown());
+    m_driverController.start().onTrue(m_pnuematics.compressorCommand());
    
     
     

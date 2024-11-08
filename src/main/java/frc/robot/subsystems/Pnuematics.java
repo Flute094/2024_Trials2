@@ -14,24 +14,26 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class Pnuematics extends SubsystemBase{
     private final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
 
-    private final Solenoid lSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
-    private final Solenoid rSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
+    public final Solenoid lSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
+   
 
-    public Pnuematics(){
-    compressor.enableDigital();
+    public Command compressorCommand(){
+   
+    return run(()->compressor.disable(), ()->compressor.enableDigital());
     }
 
     
     public Command armUp(){
-    lSolenoid.set(true);
-    rSolenoid.set(true);
-    return para(null);
-    } 
+   
+    return runOnce(()-> lSolenoid.toggle()); 
+
+    
+    }
 
     public Command armDown(){
         lSolenoid.set(false);
-        rSolenoid.set(false);
-        return runOnce(null);
+        
+        return runOnce(()-> lSolenoid.toggle());
     }
        
        
