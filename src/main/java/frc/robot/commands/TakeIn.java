@@ -18,4 +18,9 @@ public class TakeIn extends Command {
         m_intake.setSpeed(1); 
     }
 
+  @Override
+    public void end(){
+      m_intake.setSpeed(0);
+    }
+
   }
