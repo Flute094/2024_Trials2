@@ -79,9 +79,8 @@ GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVariable).ge
             () -> m_driverController.getLeftY()*speedVeriable, () -> -m_driverController.getRightX()*speedVeriable));
     m_driverController.leftBumper().whileTrue(TakeIn(m_Intake);
     m_driverController.rightBumper().whileTrue(Launch(m_Intake);
-    m_driverController.a().onTrue(m_pnuematics.armUp());
-    m_driverController.x().onTrue(m_pnuematics.armDown());
-    m_driverController.start().onTrue(m_pnuematics.compressorCommand());
+    m_driverController.a().onTrue(ToggleArm(m_Pneumatics);
+
    
     
     
