@@ -13,6 +13,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.Drive;
 //import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
+import frc.robot.commands.TakeIn;
 import frc.robot.subsystems.Pnuematics;
 
 
@@ -75,7 +76,7 @@ GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVeriable).ge
     m_drive.setDefaultCommand(
         m_drive.arcadeDriveCommand(
             () -> m_driverController.getLeftY()*speedVeriable, () -> -m_driverController.getRightX()*speedVeriable));
-   m_driverController.leftBumper().whileTrue(m_Intake.Suck_In());
+   m_driverController.leftBumper().whileTrue(TakeIn(m_Intake, 1);
     m_driverController.rightBumper().whileTrue(m_Intake.Launch());
     m_driverController.a().onTrue(m_pnuematics.armUp());
     m_driverController.x().onTrue(m_pnuematics.armDown());
