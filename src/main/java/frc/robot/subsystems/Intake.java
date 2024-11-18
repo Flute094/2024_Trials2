@@ -16,27 +16,16 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 /** Add your docs here. */
 public class Intake extends SubsystemBase{
     
-    private final WPI_TalonSRX ritghtLauncherTalon = new WPI_TalonSRX (9);
-   private final WPI_TalonSRX  leftLauncherTalon = new WPI_TalonSRX (6);
+    private final WPI_TalonSRX rightLauncherTalon = new WPI_TalonSRX (9);
+    private final WPI_TalonSRX  leftLauncherTalon = new WPI_TalonSRX (6);
 
-   public Intake(){
-    leftLauncherTalon.follow(ritghtLauncherTalon);
-   }
-
-
-    public Command Launch() {
-       
-        
-        return runOnce(()-> ritghtLauncherTalon.setVoltage(.1)).andThen(run(()-> new WaitCommand(4)).andThen(()-> ritghtLauncherTalon.setVoltage(0)));
+    public Intake(){
+        leftLauncherTalon.follow(rightLauncherTalon);
     }
-    
 
-    public Command Suck_In() {
-       return startEnd(()-> ritghtLauncherTalon.setVoltage(-.1), ()-> ritghtLauncherTalon.setVoltage(0));
-    
-       
-    }
-  
-    
+
+    public void SetSpeed(double motorSpeed) {
+        rightLauncherTalon.set(motordSpeed)
+    }    
    
 }
