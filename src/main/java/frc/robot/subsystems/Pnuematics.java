@@ -16,18 +16,13 @@ public class Pnuematics extends SubsystemBase{
 
     public final DoubleSolenoid lSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 0);
    
- 
-    public Command armUp(){
-   
-    return runOnce(()-> lSolenoid.toggle()); 
-
+    public Pnuematics(){
+    }
     
+    public void toggleArm(){
+       lSolenoid.toggle(); 
     }
 
-    public Command armDown(){
-        
-        return runOnce(()-> lSolenoid.toggle());
-    }
        
        
     
