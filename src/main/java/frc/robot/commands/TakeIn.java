@@ -7,17 +7,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class TakeIn extends Command {
 
   private final Intake m_intake;
-  private final double m_speed;
   
-  public TakeIn(Intake intake, double speed) {
+  public TakeIn(Intake intake) {
     m_intake = intake;
-    m_speed = speed;
     addRequirements(m_intake);
   }
 
   @Override
     public void initialize() {
-        m_intake.setSpeed(m_speed); 
+        m_intake.setSpeed(1); 
     }
 
   }
