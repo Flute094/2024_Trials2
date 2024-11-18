@@ -20,12 +20,13 @@ public class Intake extends SubsystemBase{
     private final WPI_TalonSRX  leftLauncherTalon = new WPI_TalonSRX (6);
 
     public Intake(){
-        leftLauncherTalon.follow(rightLauncherTalon);
+    
     }
 
 
     public void SetSpeed(double motorSpeed) {
-        rightLauncherTalon.set(motordSpeed)
+        rightLauncherTalon.set(motorSpeed);
+        leftLauncherTalon.set(-motorSpeed);
     }    
    
 }
