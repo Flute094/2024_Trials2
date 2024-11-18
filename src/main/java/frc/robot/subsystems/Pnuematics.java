@@ -16,13 +16,7 @@ public class Pnuematics extends SubsystemBase{
 
     public final DoubleSolenoid lSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 0);
    
-
-    public Command compressorCommand(){
-   
-    return startEnd(()->compressor.disable(), ()->compressor.enableDigital());
-    }
-
-    
+ 
     public Command armUp(){
    
     return runOnce(()-> lSolenoid.toggle()); 
