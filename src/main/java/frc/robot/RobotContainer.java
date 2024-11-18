@@ -14,6 +14,7 @@ import frc.robot.subsystems.Drive;
 //import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.commands.TakeIn;
+import frc.robot.commands.Launch;
 import frc.robot.subsystems.Pnuematics;
 
 
@@ -41,9 +42,9 @@ public class RobotContainer {
   private final Pnuematics m_pnuematics = new Pnuematics();
 
   //private GenericEntry speedVeriable = Shuffleboard.getTab("1").add("Speed", .98).getEntry();
-  private double speedVeriable = .98;
+  private double speedVariable = .98;
   
-GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVeriable).getEntry();
+GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVariable).getEntry();
 
 
   private final CommandXboxController m_driverController =
@@ -76,8 +77,8 @@ GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVeriable).ge
     m_drive.setDefaultCommand(
         m_drive.arcadeDriveCommand(
             () -> m_driverController.getLeftY()*speedVeriable, () -> -m_driverController.getRightX()*speedVeriable));
-   m_driverController.leftBumper().whileTrue(TakeIn(m_Intake, 1);
-    m_driverController.rightBumper().whileTrue(m_Intake.Launch());
+    m_driverController.leftBumper().whileTrue(TakeIn(m_Intake);
+    m_driverController.rightBumper().whileTrue(Launch(m_Intake);
     m_driverController.a().onTrue(m_pnuematics.armUp());
     m_driverController.x().onTrue(m_pnuematics.armDown());
     m_driverController.start().onTrue(m_pnuematics.compressorCommand());
