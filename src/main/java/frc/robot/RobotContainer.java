@@ -14,15 +14,15 @@ import frc.robot.subsystems.Drive;
 //import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.commands.TakeIn;
+import frc.robot.commands.UpArm;
+import frc.robot.commands.DownArm;
 import frc.robot.commands.Launch;
-import frc.robot.subsystems.Pnuematics;
+import frc.robot.subsystems.Pneumatics;
 
 
 
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-
-
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -39,7 +39,7 @@ public class RobotContainer {
   private final Drive m_drive = new Drive();
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Intake m_Intake = new Intake();
-  private final Pnuematics m_pnuematics = new Pnuematics();
+  private final Pneumatics m_pneumatics = new Pneumatics();
 
   //private GenericEntry speedVeriable = Shuffleboard.getTab("1").add("Speed", .98).getEntry();
   private double speedVariable = .98;
@@ -54,6 +54,7 @@ GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVariable).ge
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    m_pneumatics.initialize();
   }
   
   /**
@@ -76,17 +77,19 @@ GenericEntry speed = Shuffleboard.getTab("Drive").add("Speed", speedVariable).ge
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     m_drive.setDefaultCommand(
         m_drive.arcadeDriveCommand(
-            () -> m_driverController.getLeftY()*speedVeriable, () -> -m_driverController.getRightX()*speedVeriable));
-    m_driverController.leftBumper().whileTrue(TakeIn(m_Intake);
-    m_driverController.rightBumper().whileTrue(Launch(m_Intake);
-    m_driverController.a().onTrue(ToggleArm(m_Pneumatics);
-
+            () -> m_driverController.getLeftY()*speedVariable, () -> -m_driverController.getRightX()*speedVariable));
+    m_driverController.leftBumper().whileTrue(new TakeIn(m_Intake));
+    m_driverController.rightBumper().whileTrue(new Launch(m_Intake));
+    m_driverController.y().onTrue(new UpArm(m_pneumatics));
+    m_driverController.a().onTrue(new DownArm(m_pneumatics));
    
     
     
     
     
   }
+
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

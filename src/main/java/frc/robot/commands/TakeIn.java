@@ -15,12 +15,12 @@ public class TakeIn extends Command {
 
   @Override
     public void initialize() {
-        m_intake.setSpeed(1); 
+        m_intake.SetSpeed(1); 
     }
 
   @Override
-    public void end(){
-      m_intake.setSpeed(0);
+    public void end(boolean interupted){
+      m_intake.SetSpeed(0);
     }
 
   }

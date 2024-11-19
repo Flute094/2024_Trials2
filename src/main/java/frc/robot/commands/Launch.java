@@ -8,19 +8,19 @@ public class Launch extends Command {
 
   private final Intake m_intake;
   
-  public TakeIn(Intake intake) {
+  public Launch(Intake intake) {
     m_intake = intake;
     addRequirements(m_intake);
   }
 
   @Override
     public void initialize() {
-        m_intake.setSpeed(-1); 
+        m_intake.SetSpeed(-1); 
     }
 
   @Override
-    public void end(){
-      m_intake.setSpeed(0);
+    public void end(boolean interupted){
+      m_intake.SetSpeed(0);
     }
 
   }
